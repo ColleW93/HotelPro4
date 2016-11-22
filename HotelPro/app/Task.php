@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+
+	protected $table = 'tasks';
+
     protected $fillable = ['task_name', 'room_no', 'user_name', 'user_id'];
 
     /**
@@ -13,5 +16,5 @@ class Task extends Model
      *
      * @var array
      */
-    protected $hidden = ['user_id'];
+    protected $hidden = [];
 }

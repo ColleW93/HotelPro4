@@ -17,9 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('home');
+});
+
 $api->version('v1', function($api) {
 	$api->get('hello', '\App\Http\Controllers\HomeController@index');
-	//$api->get('users', '\App\Http\Controllers\UsersController@index');
+	$api->get('users', '\App\Http\Controllers\UsersController@show');
+	$api->get('tasks', '\App\Http\Controllers\TaskController@show');
+	$api->get('makeTask', '\App\Http\Controllers\TaskController@index');
+	$api->post('makeTask', '\App\Http\Controllers\TaskController@create');
 });
 
 Route::auth();

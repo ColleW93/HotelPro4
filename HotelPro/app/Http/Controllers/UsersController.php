@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\User;
 
+use Illuminate\Support\Facades\DB;
+
 class UsersController extends Controller
 {
     public function index() 
@@ -32,7 +34,7 @@ class UsersController extends Controller
 
     public function create()
     {
-        return view('admin.users.create');
+        //return view('admin.users.create');
     }
 
     public function store(Request $request)
@@ -40,6 +42,14 @@ class UsersController extends Controller
         User::create($request->all());
         return 'succes';
         return $request->all();
+    }
+
+
+    public function show()
+    {
+        $users = DB::table('users')->get();
+
+        return view('users', ['users' => $users]);
     }
 
 }

@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Illuminate\Support\Facades\DB;
+
+use App\Task;
+
+use Illuminate\Support\Facades\Input;
+
 class TaskController extends Controller
 {
     /**
@@ -15,7 +21,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        return view('makeTask');
     }
 
     /**
@@ -23,9 +29,26 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        /*$task = new Task;
+
+        DB::table('tasks')->insert(
+        ['task_name' => Input::get('task_name')],
+        ['room_no' => Input::get('room_no')],
+        ['user_name' => Input::get('user_name')],
+        ['user_id' => Input::get('user_id')]);
+
+        return view('welcome');*/
+
+        $data = array(
+        'task_name' => Input::get('task_name'),
+        'room_no' => Input::get('room_no'),
+        'user_name' => Input::get('user_name'),
+        'user_id' => Input::get('user_id'),
+        );
+        DB::table('tasks')->insert($data);
+        return view('welcome');
     }
 
     /**
@@ -36,7 +59,13 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*return Task::create([
+            'task_name' => $data['task_name'],
+            'room_no' => $data['room_no'],
+            'user_name' => $data['user_name'],
+            'user_id' => $data['user_id'],
+
+        ]);*/
     }
 
     /**
@@ -45,9 +74,11 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $tasks = DB::table('tasks')->get();
+
+        return view('tasks', ['tasks' => $tasks]);
     }
 
     /**
