@@ -77,9 +77,11 @@ class TaskController extends Controller
     public function show()
     {
         $tasks = DB::table('tasks')->get();
+        $ret = '{"tasks":' . json_encode($tasks) . '}';
+        return $ret; 
 
-        return view('tasks', ['tasks' => $tasks]);
     }
+
 
     /**
      * Show the form for editing the specified resource.

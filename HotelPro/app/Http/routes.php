@@ -17,14 +17,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('home');
+Route::get('tasks', '\App\Http\Controllers\TaskController@index', function () {
+    return view('tasks', ['tasks' => json_decode($ret, true)]);
 });
+
+Route::get('json/tasks', '\App\Http\Controllers\TaskController@show', function () {
+
+    return $ret;
+}); 
 
 $api->version('v1', function($api) {
 	$api->get('hello', '\App\Http\Controllers\HomeController@index');
 	$api->get('users', '\App\Http\Controllers\UsersController@show');
 	$api->get('tasks', '\App\Http\Controllers\TaskController@show');
+	$api->get('apitasks', '\App\Http\Controllers\TaskController@apishow');
 	$api->get('makeTask', '\App\Http\Controllers\TaskController@index');
 	$api->post('makeTask', '\App\Http\Controllers\TaskController@create');
 });
