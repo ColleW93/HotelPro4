@@ -14,21 +14,9 @@ class UsersController extends Controller
 {
     public function index() 
     {
-    	$users = [
-		'0' => [
-			'firstname' => 'Nicole',
-			'lastname' => 'Weirauch',
-			'location' => 'Roskilde'
-		],
+    	$users = DB::table('users')->get();
 
-		'1' => [
-			'firstname' => 'Eucheria',
-			'lastname' => 'Innocent',
-			'location' => 'Roskilde'
-		]
-	];
-
-	return view('admin.users.index', compact('users'));
+        return view('users', ['users' => $users]);
     }
 
 
@@ -48,8 +36,8 @@ class UsersController extends Controller
     public function show()
     {
         $users = DB::table('users')->get();
-
-        return view('users', ['users' => $users]);
+        $ret = '{"users":' . json_encode($users) . '}';
+        return $ret; 
     }
 
 }
