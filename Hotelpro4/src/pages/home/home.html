@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+ 
+  <ion-content padding class="home">
+     <h2>Update Your Tasks!</h2>
+  <ion-list>
+
+    <ion-item>
+      <ion-label>Task ID</ion-label>
+       <ion-input [(ngModel)]="" type="number" value=""></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Task Status</ion-label>
+    <ion-select [(ngModel)]="currentCatch.species">
+      <ion-option value="Finised">Finished</ion-option>
+      <ion-option value="Not Finished">Not Finished</ion-option>
+    </ion-select>
+    </ion-item>
+
+  </ion-list>
+
+  <button (click)="Update()"> Confirm </button>
+
+</ion-content>

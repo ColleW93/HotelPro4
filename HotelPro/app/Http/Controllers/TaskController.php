@@ -15,13 +15,25 @@ use Illuminate\Support\Facades\Input;
 class TaskController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the makeTask index.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexMT()
+    {
+        return view('makeTask');
+    }
+
+    /**
+     * Display the tasks view.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('makeTask');
+        $tasks = DB::table('tasks')->get();
+
+        return view('tasks', ['tasks' => $tasks]);
     }
 
     /**
@@ -59,13 +71,23 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        /*return Task::create([
-            'task_name' => $data['task_name'],
-            'room_no' => $data['room_no'],
-            'user_name' => $data['user_name'],
-            'user_id' => $data['user_id'],
+        return Task::update([
+            'status' => $data['status'],
+        ]);
+    }
 
-        ]);*/
+    /**
+     * Display all tasks.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showAll()
+    {
+        $tasks = DB::table('tasks')->get();
+        $ret = '{"tasks":' . json_encode($tasks) . '}';
+        return $ret; 
+
     }
 
     /**
@@ -74,11 +96,43 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function showUnFinished()
     {
-        $tasks = DB::table('tasks')->get();
+        $tasks = DB::table('tasks')->where('status', '=', 'Not Finished')->get();
         $ret = '{"tasks":' . json_encode($tasks) . '}';
         return $ret; 
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showfinished()
+    {
+        $tasks = DB::table('tasks')->where('status', '=', 'Finished')->get();
+        $ret = '{"tasks":' . json_encode($tasks) . '}';
+        return $ret; 
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showSingle($id)
+    {
+        /*return response()->json(
+            Task::where('id', $id)
+            ->first());*/
+
+        $getTaskByID = DB::table('tasks')->where('id', $id)->first();
+        $ret = '{"task":' . json_encode($getTaskByID) . '}';
+        return $ret;
 
     }
 
@@ -91,7 +145,7 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('updateTask');
     }
 
     /**
@@ -101,9 +155,14 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+      /* $data = array(
+        'id' => Input::get('id'));
+        'status' => Input::get('status'));
+        DB::table('tasks')->where('id', $data)->update();
+
+        return view('welcome');*/
     }
 
     /**
@@ -112,8 +171,12 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $data = array(
+        'id' => Input::get('id'));
+        DB::table('tasks')->where('id', $data)->delete();
+
+        return view('welcome');
     }
 }

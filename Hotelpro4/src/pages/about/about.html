@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      View Tasks
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+   <ion-list>
+    <ion-item *ngFor="let task of tasks">
+      Task ID: {{task.task_id}}<br/>
+      Task: {{task.task_name}}<br/>
+      Room: {{task.room_no}}<br/>
+      Employee Name: {{task.user_name}}<br/>
+  
+    </ion-item>
+  </ion-list>
+</ion-content>
