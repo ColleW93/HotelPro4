@@ -157,12 +157,14 @@ class TaskController extends Controller
      */
     public function update(Request $request)
     {
-      /* $data = array(
+       $data = array(
         'id' => Input::get('id'));
-        'status' => Input::get('status'));
-        DB::table('tasks')->where('id', $data)->update();
+        //'status' => Input::get('status'));
+        //DB::table('tasks')->where('id', $data, 'status', $data)->update();
+        $update = array('status' => Input::get('status'));
+        DB::table('tasks')->where('id', $data)->update($update);
 
-        return view('welcome');*/
+        return view('welcome');
     }
 
     /**
@@ -176,6 +178,19 @@ class TaskController extends Controller
         $data = array(
         'id' => Input::get('id'));
         DB::table('tasks')->where('id', $data)->delete();
+
+        return view('welcome');
+    }
+
+    /**
+     * Remove all resources from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function clear()
+    {
+        DB::table('tasks')->truncate();
 
         return view('welcome');
     }

@@ -14,7 +14,9 @@
                    <table>
 					    <tr>
 					        <td>ID</td>
-					        <td>Name</td>
+					        <td>Task</td>
+					        <td>Status</td>
+
 					    </tr>
 
 					    @foreach($tasks as $tasks)
@@ -22,7 +24,7 @@
 					        <tr>
 					            <td>{{ $tasks->id }}</td>
 					            <td>{{ $tasks->task_name }}</td>
-
+					            <td>{{ $tasks->status }}</td>
 					        </tr>
 
 					    @endforeach
@@ -34,11 +36,11 @@
                 <div class="panel-heading">Update Tasks</div>
                 	<div class="panel-body">
             			<div>
-		                	<form class="form-horizontal" role="form" method="POST" action="{{ url('/deleteTask/{id}') }}">
+		                	<form class="form-horizontal" role="form" method="POST" action="{{ url('/updateTask/{id}') }}">
 		                        {{ csrf_field() }}
 
 		                        <div class="form-group">
-		                            <label for="task_name" class="col-md-4 control-label">Task ID</label>
+		                            <label for="id" class="col-md-4 control-label">Task ID</label>
 
 		                            <div class="col-md-6">
 		                                <input id="id" type="number" class="form-control" name="id">
@@ -47,11 +49,10 @@
 		                        </div>
 
 		                        <div class="form-group">
-		                            <label for="task_name" class="col-md-4 control-label">Status</label>
+		                            <label for="status" class="col-md-4 control-label">Status</label>
 
 		                            <div class="col-md-6">
-		                                <input id="status" type="text" class="form-control" name="status">
-
+		                                <input id="status" type="text" class="form-control" name="status" placeholder="Enter 'Finished' or 'Not Finished'">
 		                            </div>
 		                        </div>
 
@@ -88,6 +89,14 @@
 		                                    <i class="fa fa-btn fa-trash"></i> Delete Task
 		                                </button>
 		                            </div>
+		                        </div>
+		                    </form>
+
+		                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/clearTasks/{id}') }}">
+		                    	<div class="col-md-6 col-md-offset-4">
+		                            <button type="submit" class="btn btn-primary">
+		                                <i class="fa fa-btn fa-trash"></i> Clear Database
+		                            </button>
 		                        </div>
 		                    </form>
                 		</div>
