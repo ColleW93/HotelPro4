@@ -1,6 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
+
+<style>
+  
+
+        div, a {
+            font-weight: bold;
+        }
+
+        .buttonstyle {
+            font: bold 30px Arial;
+            text-decoration: none;
+            background-color: #f4c8ef;
+            color: #ffffff;
+            padding: 10px 10px 10px 10px;
+            border-top: 1px solid #e200c8;
+            border-right: 1px solid #910080;
+            border-bottom: 1px solid #910080;
+            border-left: 1px solid #e200c8;
+            margin-left:24px;
+        }
+
+        .panel-body {
+            background-color: #ffffff;
+            height:100%;
+            font-color: #ffffff!important;
+        }
+
+        .panel-heading {
+            color: #ffffff!important;
+            background-color: #000000!important;
+        }
+
+
+    </style>
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -48,7 +83,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="buttonstyle">
                                     <i class="fa fa-btn fa-list"></i> Register Task
                                 </button>
                             </div>

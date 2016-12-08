@@ -155,7 +155,7 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function updateWeb(Request $request)
     {
        $data = array(
         'id' => Input::get('id'));
@@ -165,6 +165,21 @@ class TaskController extends Controller
         DB::table('tasks')->where('id', $data)->update($update);
 
         return view('welcome');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+       $data = array(
+        'id' => Input::get('id'));
+        $update = array('status' => Input::get('status'));
+        DB::table('tasks')->where('id', $data)->update($update);
     }
 
     /**

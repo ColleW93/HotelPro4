@@ -22,7 +22,7 @@
 
         body {
             font-family: 'Lato';
-            background-image: url('background.jpg')!important;
+            font-weight: bold;
         }
 
         .fa-btn {
@@ -31,7 +31,7 @@
     </style>
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top" id="uppercolor">
+    <nav class="navbar navbar-default navbar-static-top" id="uppercolor" style="height: 120px; background-color: #000;">
         <div class="container" id="uppercolor">
             <div class="navbar-header" id="upperC">
 
@@ -44,31 +44,31 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    HotelPro
+                <a class="navbar-brand" href='http://localhost:8000/'>
+                <img src="{{asset('assets/img/hoteldark.jpg')}}" style="height: 100px; width: 150px;">                   
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
+               <!-- <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
-                </ul>
+                </ul>-->
 
                 <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" style="margin-bottom: -5px!important;">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/login') }}" style="color: #fff; padding-top: 80px; font-size: 20px;">Login</a></li>
+                        <li><a href="{{ url('/register') }}" style="color: #fff; padding-top: 80px; font-size: 20px;">Register</a></li>
                     @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color: #fff; padding-top: 80px; font-size: 20px;">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out" style="color: #fff; padding-top: 80px; font-size: 20px;"></i>Logout</a></li>
                             </ul>
                         </li>
                     @endif

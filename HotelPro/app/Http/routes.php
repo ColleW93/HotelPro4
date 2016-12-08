@@ -107,7 +107,7 @@ Route::post('makeTask', '\App\Http\Controllers\TaskController@create', function 
 
 Route::post('deleteTask/{id}', '\App\Http\Controllers\TaskController@destroy', function () {});
 
-Route::post('updateTask/{id}', '\App\Http\Controllers\TaskController@update', function () {});
+Route::post('updateTask/{id}', '\App\Http\Controllers\TaskController@updateWeb', function () {});
 
 Route::post('json/updateTask/{id}', '\App\Http\Controllers\TaskController@update', function () {});
 
