@@ -9,10 +9,11 @@
 <ion-content padding>
    <ion-list>
     <ion-item *ngFor="let task of tasks">
-      Task ID: {{task.task_id}}<br/>
+      Task ID: {{task.id}}<br/>
       Task: {{task.task_name}}<br/>
       Room: {{task.room_no}}<br/>
       Employee Name: {{task.user_name}}<br/>
+      Status: {{task.status}}<br/>
   
     </ion-item>
   </ion-list>

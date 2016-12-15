@@ -159,8 +159,6 @@ class TaskController extends Controller
     {
        $data = array(
         'id' => Input::get('id'));
-        //'status' => Input::get('status'));
-        //DB::table('tasks')->where('id', $data, 'status', $data)->update();
         $update = array('status' => Input::get('status'));
         DB::table('tasks')->where('id', $data)->update($update);
 
@@ -176,6 +174,7 @@ class TaskController extends Controller
      */
     public function update(Request $request)
     {
+        
        $data = array(
         'id' => Input::get('id'));
         $update = array('status' => Input::get('status'));

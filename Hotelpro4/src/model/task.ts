@@ -6,4 +6,5 @@ export class Task {
     public updated_at: string;
     public user_id: number;
     public user_name: string;
+    public status: string;
 }
